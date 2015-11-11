@@ -6,6 +6,6 @@ require __DIR__.'/../vendor/autoload.php';
 use phpfd\Command;
 use Symfony\Component\Console\Application;
 
-$application = new Application('phpfd', '0.1-dev');
+$application = new Application('phpfd', '@package_version@');
 $application->add(new Command\FileSystemDetector);
 $application->run();
