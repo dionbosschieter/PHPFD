@@ -19,12 +19,14 @@ function checkFileSystemCalls($path, $fileSystemFunctions)
 {
     $fileBody = file_get_contents($path);
 
+    $usedFunctions = [];
     foreach ($fileSystemFunctions as $fileSystemFunction) {
         if (strpos($fileBody, "$fileSystemFunction(")) {
-            echo $path . ' : ' . "$fileSystemFunction(" . PHP_EOL;
-            break;
+            $usedFunctions[] = $fileSystemFunction;
         }
     }
+    if (count($usedFunctions) > 0)
+      echo $path . ' : ' . implode(',', $usedFunctions) . PHP_EOL;
 }
 
 $directory = new RecursiveDirectoryIterator($argv[1]);
