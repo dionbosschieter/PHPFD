@@ -3,6 +3,8 @@
 namespace phpfd\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -29,11 +31,13 @@ class FileSystemDetector extends Command
         $this
             ->setName('find')
             ->setDescription('Searches php files in a given path (current path by default)');
+
+        $this->addOption('path', 'p', InputOption::VALUE_REQUIRED, '', getcwd());
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $directory = new RecursiveDirectoryIterator('.');
+        $directory = new RecursiveDirectoryIterator($input->getOption('path'));
 
         foreach (new RecursiveIteratorIterator($directory) as $filename=>$current) {
             if (is_file($current->getPathName()) === false)
