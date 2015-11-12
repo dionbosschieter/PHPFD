@@ -1,0 +1,23 @@
+{
+    "name": "dionbosschieter/phpfd",
+    "description": "It finds php files invoking filesystem calls",
+    "require": {
+        "symfony/console": "^3.0@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dion Bosschieter",
+            "email": "dionbosschieter@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "phpfd\\": "src/phpfd"
+        }
+    },
+    "minimum-stability": "dev"
+}
