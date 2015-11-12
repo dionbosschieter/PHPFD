@@ -39,10 +39,13 @@ class FileSystemDetector extends Command
             if (is_file($current->getPathName()) === false)
                 continue;
 
-            $this->checkFileSystemCalls($current->getPathName());
+            $output->writeln($this->checkFileSystemCalls($current->getPathName()));
         }
     }
 
+    /**
+     * @return string
+     */
     private function checkFileSystemCalls($path)
     {
         $fileBody = file_get_contents($path);
@@ -54,6 +57,8 @@ class FileSystemDetector extends Command
             }
         }
         if (count($functions) > 0)
-            echo $path . ' : ' . implode(',', $functions) . PHP_EOL;
+            return $path . ' : ' . implode(',', $functions);
+
+        return null;
     }
 }
